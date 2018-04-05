@@ -32,8 +32,6 @@ export class HomePage extends React.Component { // eslint-disable-line react/pre
     this.props.dispatch(push(path));
   }
   render() {
-    const logo = require('../../images/CheMoa_Transparent.png');
-    //const theme = getActive();
     const Logo = styledElements.Logo;
     const FlexBox = styled.div`
       display: -webkit-flex;
@@ -49,7 +47,7 @@ export class HomePage extends React.Component { // eslint-disable-line react/pre
         </Helmet>
         <Logo />
         <FlexBox>
-        <Form schema={SCHEMAS.search} />
+          <Form schema={SCHEMAS.search} />
         </FlexBox>
       </div>
     );
