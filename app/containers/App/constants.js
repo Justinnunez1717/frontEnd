@@ -12,6 +12,9 @@
 export const DEFAULT_LOCALE = 'en';
 export const SCHEMAS = {
   blank: [],
+  search: [
+    { type: 'text', label: ' Search the Database', name: 'query'},
+   ],
   login: [
     { type: 'text', label: ' Username', name: 'username' },
     { type: 'password', label: ' Password', name: 'password' },

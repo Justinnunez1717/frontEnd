@@ -4,6 +4,7 @@
 // // GET ACTIVE THEME
 
 import styled from 'styled-components';
+import Moa from './images/CheMoa_Transparent.png';
 
 const { Map } = require('immutable');
 // const assert = require('assert');
@@ -103,6 +104,13 @@ const styledElements = {
         display: -webkit-flex;
         display: flex;
       `,
+  Logo: styled.div`
+        background-image: url(${Moa});
+        margin-left: 28%;
+        margin-right: 25%;
+        width: 50%;
+        height: 267px;
+    `,
 };
 
 export {

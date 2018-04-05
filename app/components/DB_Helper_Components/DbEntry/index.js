@@ -48,11 +48,6 @@ class DbEntry extends React.Component { // eslint-disable-line react/prefer-stat
         background-color: lightgreen;
       }
     `;
-    // const open = {
-    //   height: '100%',
-    //   display: 'block',
-    // };
-    // className="isActive"
     return (
       <Entry onClick={(evt) => this.minmax(evt)} >
         <h3> {this.props.moch.assay_name} :
