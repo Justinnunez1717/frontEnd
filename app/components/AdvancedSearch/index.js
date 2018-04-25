@@ -27,17 +27,17 @@ class AdvancedSearch extends React.Component { // eslint-disable-line react/pref
     this.changeSelection = this.changeSelection.bind(this);
   }
   onSubmit(e) {
-    const fields = document.getElementById('entryData').children;
+    // console.log(document.getElementById('entryData').children);
+    //   console.log(document.getElementById('entryData').children[0].children);
+    const fields = document.getElementById('entryData').children[0].children;
+    // console.log(fields);
     const data = {};
     for (let i = 0; i < fields.length; i += 1) {
-      if (fields[i].name === undefined || fields[i].name === '') {
-        window.alert('This entry has not defined connection to database');
-        return;
-      }
       if (fields[i].value) {
         data[fields[i].name] = fields[i].value;
       }
     }
+    console.log('data: ', data);
     this.props.handler(e, data);
   }
   changeSelection = (e) => {
@@ -56,7 +56,7 @@ class AdvancedSearch extends React.Component { // eslint-disable-line react/pref
     } else if (e.target.value === 'text') {
       select = [
         { type: e.target.value, label: ' ', name: ' ' },
-        { type: 'checkbox', label: ' Exact Match', name: 'exact',  style: { marginLeft: '5px', marginRight: '5px', width: '25px', float: 'left' } },
+        { type: 'checkbox', label: ' Exact Match', name: 'exact', style: { marginLeft: '5px', marginRight: '5px', width: '25px', float: 'left' } },
       ];
     } else {
       select = [

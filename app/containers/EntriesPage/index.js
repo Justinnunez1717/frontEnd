@@ -42,15 +42,18 @@ export class EntriesPage extends React.Component { // eslint-disable-line react/
     const fields = document.getElementById('entryData').children;
     const data = {};
     for (let i = 0; i < fields.length; i += 1) {
-      if (fields[i].name === undefined || fields[i].name === '') {
-        window.alert('This entry has not defined connection to database');
-        return;
+      for (let j = 0; j < fields[i].children.length; j += 1) {
+        if (fields[i].children[j].name === undefined || fields[i].children[j].name === '') {
+          window.alert('This entry has not defined connection to database');
+          return;
+        }
+        if (fields[i].children[j].value) {
+          data[fields[i].children[j].name] = fields[i].children[j].value;
+        }
       }
-      if (fields[i].value) {
-        data[fields[i].name] = fields[i].value;
-      }
+      console.log('data: ', data);
+      this.props.dispatch(postEntry(entryType, data));
     }
-    this.props.dispatch(postEntry(entryType, data));
   }
   render() {
     const theme = getActive();
