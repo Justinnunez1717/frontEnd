@@ -39,27 +39,27 @@ export class HomePage extends React.Component { // eslint-disable-line react/pre
     this.state = {
       search: <SearchBar handler={this.submit} />,
       searchText: 'Advanced Search',
-    }
+    };
   }
   navigate(path) {
     this.props.dispatch(push(path));
   }
   submit(destination, text) {
     console.log('in homepage submit');
-    console.log('destination',destination,'text',text);
+    console.log('destination', destination, 'text', text);
     this.props.dispatch(getEntry(null, { q: text }));
   }
   submitAdvanced(e, data) {
     console.log('in homepage submitAdvanced');
     console.log('e: ', e, 'data: ', data);
   }
-  changeSearch(){
+  changeSearch() {
     let s = <div />;
     let sT = '';
-    if(this.state.searchText == 'Basic Search'){
+    if (this.state.searchText === 'Basic Search') {
       s = <SearchBar handler={this.submit} />;
       sT = 'Advanced Search';
-    } else if(this.state.searchText == 'Advanced Search'){
+    } else if (this.state.searchText === 'Advanced Search') {
       s = <AdvancedSearch handler={this.submitAdvanced} />;
       sT = 'Basic Search';
     }
@@ -101,7 +101,7 @@ export class HomePage extends React.Component { // eslint-disable-line react/pre
         </CenterImage>
         <p className="text-center"><FormattedMessage {...messages.description} /></p>
         <FlexBox >
-          { this.state.search } <a onClick={this.changeSearch}>{this.state.searchText}</a>
+          { this.state.search } <a role="button" onClick={this.changeSearch}>{this.state.searchText}</a>
         </FlexBox>
         {shownResults}
       </div>

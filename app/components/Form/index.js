@@ -27,7 +27,7 @@ class Form extends React.Component { // eslint-disable-line react/prefer-statele
       flexDirection: 'column',
       margin: 'auto',
       maxWidth: '700px',
-    }
+    };
 
     const schema = this.props.schema.map((value, index) =>
       <div>{value.label}<Input type={value.type} placeholder={value.label} defaultValue={value.label} name={value.name} style={value.style} key={index.toString()} /></div>
