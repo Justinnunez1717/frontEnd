@@ -17,6 +17,7 @@ import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
 import SearchBar from 'components/SearchBar';
 import ListView from 'components/ListView';
+import AdvancedSearch from 'components/AdvancedSearch';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -33,12 +34,39 @@ export class HomePage extends React.Component { // eslint-disable-line react/pre
     super(props);
     this.navigate = this.navigate.bind(this);
     this.submit = this.submit.bind(this);
+    this.submitAdvanced = this.submitAdvanced.bind(this);
+    this.changeSearch = this.changeSearch.bind(this);
+    this.state = {
+      search: <SearchBar handler={this.submit} />,
+      searchText: 'Advanced Search',
+    }
   }
   navigate(path) {
     this.props.dispatch(push(path));
   }
   submit(destination, text) {
+    console.log('in homepage submit');
+    console.log('destination',destination,'text',text);
     this.props.dispatch(getEntry(null, { q: text }));
+  }
+  submitAdvanced(e, data) {
+    console.log('in homepage submitAdvanced');
+    console.log('e: ', e, 'data: ', data);
+  }
+  changeSearch(){
+    let s = <div />;
+    let sT = '';
+    if(this.state.searchText == 'Basic Search'){
+      s = <SearchBar handler={this.submit} />;
+      sT = 'Advanced Search';
+    } else if(this.state.searchText == 'Advanced Search'){
+      s = <AdvancedSearch handler={this.submitAdvanced} />;
+      sT = 'Basic Search';
+    }
+    this.setState({
+      search: s,
+      searchText: sT,
+    });
   }
   render() {
     const FlexBox = styled.div`
@@ -54,7 +82,6 @@ export class HomePage extends React.Component { // eslint-disable-line react/pre
         shownResults.push(<ListView entries={data[i][1]} key={i.toString()} />);
       }
     }
-
     const CenterImage = styled.div`
       display: -webkit-flex;
       display: flex;
@@ -70,11 +97,11 @@ export class HomePage extends React.Component { // eslint-disable-line react/pre
           <meta name="description" content="Home Page" />
         </Helmet>
         <CenterImage>
-          <Image src="/CheMoa_Transparent.png" responsive square />
+          <Image src="/CheMoa_Transparent.png" />
         </CenterImage>
         <p className="text-center"><FormattedMessage {...messages.description} /></p>
         <FlexBox >
-          <SearchBar handler={this.submit} />
+          { this.state.search } <a onClick={this.changeSearch}>{this.state.searchText}</a>
         </FlexBox>
         {shownResults}
       </div>

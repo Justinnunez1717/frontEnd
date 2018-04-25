@@ -21,13 +21,21 @@ class Form extends React.Component { // eslint-disable-line react/prefer-statele
   render() {
     const Submit = styledElements.Submit;
     const Input = styledElements.Input;
+    const flexT = {
+      display: 'flex',
+      display: '-webkit-flex',
+      flexDirection: 'column',
+      margin: 'auto',
+      maxWidth: '700px',
+    }
+
     const schema = this.props.schema.map((value, index) =>
-      <Input type={value.type} placeholder={value.label} name={value.name} style={value.style} key={index.toString()} />
+      <div>{value.label}<Input type={value.type} placeholder={value.label} defaultValue={value.label} name={value.name} style={value.style} key={index.toString()} /></div>
     );
     return (
       <div>
         <form onSubmit={(evt) => { evt.preventDefault(); this.props.handler(this.props.schemaType); }} >
-          <div id="entryData"> { schema } </div>
+          <div style={flexT} id="entryData"> { schema } </div>
           <Submit type="submit" value="Submit" />
         </form>
       </div>
